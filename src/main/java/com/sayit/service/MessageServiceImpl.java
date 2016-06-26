@@ -1,18 +1,44 @@
 package com.sayit.service;
 
+import java.net.URI;
+import java.util.Map;
+
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.RequestEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.google.common.collect.Lists;
+import com.sayit.resources.FCMMessage;
+import com.sayit.resources.FCMMessageResponse;
 import com.sayit.resources.Message;
 
 @Service
 @Slf4j
 public class MessageServiceImpl implements MessageService {
+    
+    @Autowired
+    private RestTemplate restTemplate;
 
+    private final String URL = "https://android.googleapis.com/gcm/send";
+    private final String KEY = "AIzaSyCnI7WKD0DN8vzzW-bO5tahEclRLmA-Jsw";
+    
     @Override
-    public void sendMessage(Message message) {
+    public void sendMessage(Message message) throws Exception {
         log.info("Sending message="+message);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "key=" + KEY);
+        headers.add("Content-Type", "application/json");
+        headers.add("Accept", "application/json");
+        FCMMessage fcmMessage = new FCMMessage();
+        fcmMessage.setRegistration_ids(Lists.newArrayList("evXk8pFxfjc:APA91bF1Axgw54zREZAZRs4330MM7UMKq4SdZf_ACaaDgZl26jlTexQd9ScJyEyDnoiHYAm7dQW0c6EcV5DXYofh9Ifr0_GNx-axh2EXjDVINcMtpMbH4favNWkYZ_fYWpsUFaAF_mMk"));
+        RequestEntity<FCMMessage> requestEntity = 
+                new RequestEntity<FCMMessage>(fcmMessage, headers, HttpMethod.POST, new URI(URL));
+        restTemplate.exchange(requestEntity, Map.class);
     }
 
 }

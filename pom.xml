@@ -44,11 +44,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.firebase</groupId>
-            <artifactId>firebase-client</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
+      
     </dependencies>
 </project>

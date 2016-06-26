@@ -18,7 +18,7 @@ public class MessageController {
 
     @RequestMapping(value = "/api/v1/message/send", method = RequestMethod.POST)
     @ResponseBody
-    public String sendMessage(@RequestBody Message message) {
+    public String sendMessage(@RequestBody Message message) throws Exception {
         messageService.sendMessage(message);
         return "Message Sent";
     }

@@ -4,5 +4,5 @@ import com.sayit.resources.Message;
 
 public interface MessageService {
 
-    void sendMessage(Message message);
+    void sendMessage(Message message) throws Exception;
 }
