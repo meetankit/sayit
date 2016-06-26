@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.common.collect.Lists;
 import com.sayit.resources.FCMMessage;
-import com.sayit.resources.FCMMessageResponse;
 import com.sayit.resources.Message;
 
 @Service
@@ -33,9 +32,8 @@ public class MessageServiceImpl implements MessageService {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "key=" + KEY);
         headers.add("Content-Type", "application/json");
-        headers.add("Accept", "application/json");
         FCMMessage fcmMessage = new FCMMessage();
-        fcmMessage.setRegistration_ids(Lists.newArrayList("evXk8pFxfjc:APA91bF1Axgw54zREZAZRs4330MM7UMKq4SdZf_ACaaDgZl26jlTexQd9ScJyEyDnoiHYAm7dQW0c6EcV5DXYofh9Ifr0_GNx-axh2EXjDVINcMtpMbH4favNWkYZ_fYWpsUFaAF_mMk"));
+        fcmMessage.setRegistration_ids(Lists.newArrayList(message.getFrom()));
         RequestEntity<FCMMessage> requestEntity = 
                 new RequestEntity<FCMMessage>(fcmMessage, headers, HttpMethod.POST, new URI(URL));
         restTemplate.exchange(requestEntity, Map.class);
