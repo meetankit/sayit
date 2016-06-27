@@ -23,6 +23,9 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private UserRegistrationService regService;
+    
     private final String URL = "https://android.googleapis.com/gcm/send";
     private final String KEY = "AIzaSyCnI7WKD0DN8vzzW-bO5tahEclRLmA-Jsw";
     
@@ -33,7 +36,7 @@ public class MessageServiceImpl implements MessageService {
         headers.add("Authorization", "key=" + KEY);
         headers.add("Content-Type", "application/json");
         FCMMessage fcmMessage = new FCMMessage();
-        fcmMessage.setRegistration_ids(Lists.newArrayList(message.getFrom()));
+        fcmMessage.setRegistration_ids(Lists.newArrayList(regService.getRegistrationId(message.getTo())));
         RequestEntity<FCMMessage> requestEntity = 
                 new RequestEntity<FCMMessage>(fcmMessage, headers, HttpMethod.POST, new URI(URL));
         restTemplate.exchange(requestEntity, Map.class);

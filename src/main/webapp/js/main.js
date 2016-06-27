@@ -10,8 +10,27 @@ if ('serviceWorker' in navigator) {
             userVisibleOnly: true
         }).then(function(sub) {
             console.log('endpoint:', sub.endpoint);
+            var regId=sub.endpoint;
+            console.log('regId:', regId);
+            $.ajax({
+            	  type: "POST",
+            	  url: "/api/v1/register", // the method we are calling
+            	  contentType: "application/json; charset=utf-8",
+            	  dataType: "json",
+            	  data: "{\"user\":\"test\", \"regId\":" + encodeURIComponent(regId) + "}",
+            	  success: function (result) {
+            	      alert('Yay! It worked!');
+            	      // Or if you are returning something
+            	    //  alert('I returned... ' + result.WhateverIsReturning);                    
+            	  },
+            	  error: function (result) {
+            	      alert('Oh no :(');
+            	  }
+            	});
         });
     }).catch(function(error) {
         console.log(':^(', error);
     });
 }
+
+// Let's edit the description!
