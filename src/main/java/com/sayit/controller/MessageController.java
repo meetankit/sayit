@@ -1,5 +1,7 @@
 package com.sayit.controller;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +31,7 @@ public class MessageController {
     
     @RequestMapping(value = "/api/v1/register", method = RequestMethod.POST)
     @ResponseBody
-    public String register(@RequestBody UserRegistration userReg) {
+    public String register(@RequestBody UserRegistration userReg) throws UnsupportedEncodingException {
     	userRegService.register(userReg);
         return "Registered";
     }

@@ -1,5 +1,7 @@
 package com.sayit.service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,10 +18,10 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	private Map<String, String> userRegistrations = new HashMap<String, String>();
 	
     @Override
-    public void register(UserRegistration userReg) {
+    public void register(UserRegistration userReg) throws UnsupportedEncodingException {
         log.info("Saving userReg="+userReg);
         userRegistrations.put(userReg.getUser(), 
-                userReg.getRegId().replace("https://android.googleapis.com/gcm/send/", ""));
+                URLDecoder.decode(userReg.getRegId(), "UTF-8").replace("https://android.googleapis.com/gcm/send/", ""));
     }
 
     @Override
