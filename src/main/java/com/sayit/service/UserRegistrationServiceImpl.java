@@ -18,7 +18,8 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
     @Override
     public void register(UserRegistration userReg) {
         log.info("Saving userReg="+userReg);
-        userRegistrations.put(userReg.getUser(), userReg.getRegId());
+        userRegistrations.put(userReg.getUser(), 
+                userReg.getRegId().replace("https://android.googleapis.com/gcm/send/", ""));
     }
 
     @Override
