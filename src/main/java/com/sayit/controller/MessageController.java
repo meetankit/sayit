@@ -29,6 +29,12 @@ public class MessageController {
         return "Message Sent";
     }
     
+    @RequestMapping(value = "/api/mocksend", method = RequestMethod.GET)
+    @ResponseBody
+    public String sendMockMessage() throws Exception {
+        return "Mock Message Sent";
+    }
+    
     @RequestMapping(value = "/api/v1/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(@RequestBody UserRegistration userReg) throws UnsupportedEncodingException {
