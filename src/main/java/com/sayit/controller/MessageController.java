@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sayit.resources.Message;
 import com.sayit.resources.UserRegistration;
-import com.sayit.service.MessageService;
+import com.sayit.service.MessageServiceFactory;
 import com.sayit.service.UserRegistrationService;
 
 @RestController
 public class MessageController {
     
     @Autowired
-    private MessageService messageService;
+    private MessageServiceFactory messageServiceFactory;
     @Autowired
     private UserRegistrationService userRegService;
 
     @RequestMapping(value = "/api/v1/message/send", method = RequestMethod.POST)
     @ResponseBody
     public String sendMessage(@RequestBody Message message) throws Exception {
-        messageService.sendMessage(message);
+        messageServiceFactory.getMessageService(message.getType()).sendMessage(message);
         return "Message Sent";
     }
     

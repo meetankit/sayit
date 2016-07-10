@@ -18,7 +18,7 @@ import com.sayit.resources.Message;
 
 @Service
 @Slf4j
-public class MessageServiceImpl implements MessageService {
+public class FCMMessageServiceImpl implements MessageService {
     
     @Autowired
     private RestTemplate restTemplate;
