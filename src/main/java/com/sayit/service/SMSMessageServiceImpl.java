@@ -16,7 +16,7 @@ import com.sayit.resources.Message;
 public class SMSMessageServiceImpl implements MessageService {
 
     private String AUTH_KEY = "118947AdUKPzi45781fc7a";
-    private String SENDER = "y9KUyJ9FnRPhxR59uqAK2chYCdoA5UMAmex16VsiCSeWyh-lQfJsYNC_D6lgKDu5zf0XRS1SUQAMUvu8xTpvIDo3Wj3JHQSXk7w1XvKMtidDOmirWJKkF2sfYxinKF-VumVSssSGvaltCZnw2zGr4SuJtxQi1e6AF7qBp2fy-3Q=";
+    private String SENDER = "SWETAG";
     private String ROUTE="default";
 //    private String URL="https://control.msg91.com/api/sendhttp.php?";
     private String URL = "http://localhost:8080/api/mocksend?";
