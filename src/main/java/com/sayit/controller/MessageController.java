@@ -12,24 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sayit.resources.Message;
 import com.sayit.resources.UserRegistration;
 import com.sayit.service.MessageServiceFactory;
-import com.sayit.service.QueueSendFactory;
+import com.sayit.service.QueueServiceImpl;
 import com.sayit.service.UserRegistrationService;
 
 @RestController
 public class MessageController {
     
     @Autowired
-    private MessageServiceFactory messageServiceFactory;
-    @Autowired
-    private QueueSendFactory queueSendFactory;
+    private QueueServiceImpl queueService;
     @Autowired
     private UserRegistrationService userRegService;
 
     @RequestMapping(value = "/api/v1/message/send", method = RequestMethod.POST)
     @ResponseBody
     public String sendMessage(@RequestBody Message message) throws Exception {
-    	queueSendFactory.sentToQueue(message);
-        //messageServiceFactory.getMessageService(message.getType()).sendMessage(message);
+    	queueService.publish(message);
         return "Message Sent to queue";
     }
     

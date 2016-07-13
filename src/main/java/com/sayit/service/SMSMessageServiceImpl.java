@@ -25,6 +25,7 @@ public class SMSMessageServiceImpl implements MessageService {
     public void sendMessage(Message msg) throws Exception {
         //Prepare Url
         try {
+            log.info("Sending message="+msg);
             String mainUrl = buildURL(msg);
             //prepare connection
             URL myURL = new URL(mainUrl);
