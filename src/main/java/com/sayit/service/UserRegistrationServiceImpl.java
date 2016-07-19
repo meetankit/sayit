@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sayit.dto.UserRegistration;
 import com.sayit.repository.UserRegistrationRepository;
-import com.sayit.resources.UserResource;
+import com.sayit.resources.UserRegistrationResource;
 
 @Service
 @Slf4j
@@ -20,7 +20,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	private UserRegistrationRepository userRegistrationRepository;
 	
 	@Override
-    public void register(UserResource userRes) throws UnsupportedEncodingException {
+    public void register(UserRegistrationResource userRes) throws UnsupportedEncodingException {
         log.info("Saving userReg="+userRes);
          
         userRes.setRegId(URLDecoder.decode(userRes.getRegId(), "UTF-8").replace("https://android.googleapis.com/gcm/send/", ""));

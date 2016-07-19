@@ -17,13 +17,18 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 	
 	@Override
-    public void createUser(UserResource userRes) {
+    public Long createUser(UserResource userRes) {
         log.info("Creating user="+userRes);
         User user= new User();
         user.setPhoneNo(userRes.getPhoneNo());
         user.setUserName(userRes.getUserName());
-        userRepository.save(user);
-                 
+        user = userRepository.save(user);
+        return user.getUserId();
 	}
+
+    @Override
+    public User getUser(Long userId) {
+        return userRepository.findOne(userId);
+    }
 
 }

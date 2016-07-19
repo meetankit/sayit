@@ -36,7 +36,7 @@ public class FCMMessageServiceImpl implements MessageService {
         headers.add("Authorization", "key=" + KEY);
         headers.add("Content-Type", "application/json");
         FCMMessage fcmMessage = new FCMMessage();
-        fcmMessage.setRegistration_ids(Lists.newArrayList(regService.getRegistrationId(message.getTo())));
+        fcmMessage.setRegistration_ids(Lists.newArrayList(regService.getRegistrationId(Long.valueOf(message.getTo()))));
         RequestEntity<FCMMessage> requestEntity = 
                 new RequestEntity<FCMMessage>(fcmMessage, headers, HttpMethod.POST, new URI(URL));
         restTemplate.exchange(requestEntity, Map.class);
