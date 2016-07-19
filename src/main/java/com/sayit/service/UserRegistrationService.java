@@ -2,11 +2,11 @@ package com.sayit.service;
 
 import java.io.UnsupportedEncodingException;
 
-import com.sayit.resources.UserRegistration;
+import com.sayit.resources.UserResource;
 
 public interface UserRegistrationService {
 
-    void register(UserRegistration userReg) throws UnsupportedEncodingException;
+    void register(UserResource userReg) throws UnsupportedEncodingException;
 
-	String getRegistrationId(String user);
+	String getRegistrationId(Long phoneNo);
 }

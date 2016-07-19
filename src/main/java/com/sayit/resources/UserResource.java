@@ -7,8 +7,10 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class UserRegistration {
+public class UserResource {
 
-    private String user;
+    private String userId;
     private String regId;
+    private Long phoneNo;
+    private String userName;
 }

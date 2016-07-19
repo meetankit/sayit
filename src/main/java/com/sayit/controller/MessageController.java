@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sayit.resources.Message;
-import com.sayit.resources.UserRegistration;
-import com.sayit.service.MessageServiceFactory;
+import com.sayit.resources.UserResource;
 import com.sayit.service.QueueServiceImpl;
 import com.sayit.service.UserRegistrationService;
+import com.sayit.service.UserService;
 
 @RestController
 public class MessageController {
@@ -22,6 +22,8 @@ public class MessageController {
     private QueueServiceImpl queueService;
     @Autowired
     private UserRegistrationService userRegService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/api/v1/message/send", method = RequestMethod.POST)
     @ResponseBody
@@ -38,8 +40,15 @@ public class MessageController {
     
     @RequestMapping(value = "/api/v1/register", method = RequestMethod.POST)
     @ResponseBody
-    public String register(@RequestBody UserRegistration userReg) throws UnsupportedEncodingException {
-    	userRegService.register(userReg);
+    public String register(@RequestBody UserResource userRes) throws UnsupportedEncodingException {
+    	userRegService.register(userRes);
         return "Registered";
+    }
+    
+    @RequestMapping(value = "/api/v1/user", method = RequestMethod.POST)
+    @ResponseBody
+    public String createUser(@RequestBody UserResource userRes) {
+    	userService.createUser(userRes);
+        return "Created New User";
     }
 }
